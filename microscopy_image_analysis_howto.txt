@@ -1,0 +1,21 @@
+1. separate out images for each cell type/experiment into separate directories
+2. within each directory number the images 1-n
+3. copy all these directories into this directory 
+4. stay in this directory
+5. for each cell type/experiment, create a separate text file, e.g. pcj_red.txt
+
+LOOP: 
+6. vim selectroi.py
+7. change the line "im = cv2.imread()" to the image of choice--e.g. "pcj51_52/4.png"
+8. python selectroi.py -- click and drag over a cell
+9. plug the upper left and lower right coordinates you get into the upperleft and lowerright variables of hsv_bounds.py
+10. make sure that the text file specified by the variable boundsfile is the one corresponding to the image whose coords you just found
+11. python hsv_bounds.py 
+12. press "p" to export the mean pixel value of the cell region to the text file  
+13. if your next image depicts the same cells don't change upperleft and lowerright
+14. if you want to look at mean pixel values relative to the background, choose a random upperleft and lowerright that's far away from the cell you just looked at
+15. press "b" to export the mean pixel value of this background region to the text file
+
+LATER: 
+
+Now you have these text files. writeto.py provides a template to do this--change "readfrom" and "writeto" file names. Make sure your readto file only contains data from one experiment! This will only spit out the arrays. You can plug these into matlab and manipulate them if you feel particularly lazy. 
